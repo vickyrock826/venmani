@@ -21,16 +21,36 @@ html {
     scroll-behavior: smooth;
     font-family: 'Inter', sans-serif;
     color: var(--text-main);
-    background-color: #0f172a;
-    overscroll-behavior-y: none;
+    background: #0f172a;
 }
 
 body {
-    background-color: #0f172a;
+    background-color: transparent;
     line-height: 1.6;
     overflow-x: hidden;
-    overscroll-behavior-y: none;
     -webkit-overflow-scrolling: touch;
+}
+
+/* Static background buffer for mobile overscroll */
+body::before {
+    content: "";
+    position: fixed;
+    left: -30px;
+    right: -30px;
+    bottom: -200px;
+    height: 300px;
+    pointer-events: none;
+    z-index: -10;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.15),
+        rgba(15, 23, 42, 0.85) 55%,
+        #0f172a 100%
+    );
+
+    filter: blur(14px);
+    transform: translateZ(0);
 }
 
 /* Typography */
@@ -563,6 +583,12 @@ footer {
    Responsive Design — Tablets
    ============================ */
 @media (max-width: 768px) {
+    /* Adaptive overscroll buffer for mobile */
+    body::before {
+        bottom: -160px;
+        height: 240px;
+        filter: blur(16px);
+    }
 
     /* Navigation — mobile dropdown */
     .hamburger {
