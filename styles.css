@@ -512,10 +512,10 @@ footer {
     backdrop-filter: blur(4px);
 }
 
-/* Reveal Animation on Scroll */
+/* Reveal Animation on Scroll — visible by default so content is never hidden */
 .reveal {
-    opacity: 0;
-    transform: translateY(50px);
+    opacity: 1;
+    transform: none;
     transition: all 0.8s ease;
 }
 
